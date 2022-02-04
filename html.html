@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <style>
+            body {
+                background-color: gray;
+            }
+            h1 {
+                color: black;
+                padding: 10px;
+            } 
+            input{
+                background: greenyellow;
+            }
+
+        </style>
+    </head>
+    <body>
+        <form>
+            <h1>Cadastro de pessoas</h1>
+            <p>Nome:</p>
+            <input id="inputNome">
+            <p>Idade:</p>
+            <input id="inputIdade" >
+        </form>
+        <button onclick="salvarNomeIdade()">Salvar</button>
+        <table id="tabelaPessoa">
+            <tr>
+                <th>Nome</th>
+                <th>Idade</th>
+            </tr>
+        </table>
+    
+        <script>
+            var listNomes = [];
+            
+            function salvarNomeIdade(){
+                var controleNomeExiste = false;
+    
+                var element = document.getElementById('tabelaPessoa');
+                var linha = document.createElement("tr");
+                var colunaNome = document.createElement("td");
+                var colunaIdade = document.createElement("td");
+                
+                element.appendChild(linha);
+    
+                var nome = document.getElementById('inputNome');
+                var idade = document.getElementById('inputIdade');
+                
+                linha.appendChild(colunaNome);
+                linha.appendChild(colunaIdade);
+    
+                for(var i = 0; i < listNomes.length; i++){         
+                    if(listNomes[i] == nome.value){
+                        controleNomeExiste = true;
+                        alert("nome ja existe");
+                    }
+                }
+                
+                if(controleNomeExiste == false){
+                    listNomes.push(nome.value);
+                    colunaNome.innerHTML = nome.value;
+                    colunaIdade.innerHTML = idade.value;
+                }
+            
+                nome.value = "";
+                idade.value = "";
+                
+            }
+        </script>
+    </body>
+  
+</html>
